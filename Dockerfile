@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 
 # Install system dependencies
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     iputils-ping \
     redis-tools && \
     apt-get clean && \
@@ -22,10 +22,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Django project files into the container
 COPY . /code/
 
-# Create and set permissions for log directory
-#RUN mkdir -p /code/logs && chmod 755 /code/logs
-#RUN touch /code/logs/django.log && chmod 644 /code/logs/django.log
-
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
@@ -33,4 +29,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Define command to start the Gunicorn server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "libgen.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "libgen.wsgi:application", "--timeout", "120"]

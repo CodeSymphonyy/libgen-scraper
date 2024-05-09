@@ -1,4 +1,4 @@
-version: '3.8'
+version: '4.29.0'
 networks:
   app-network:
     driver: bridge
@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/code
       - ./static:/code/static
-      #- ./data/logs:/code/logs  # Maps host 'data/logs' directory to '/code/logs' in the container
+      # - ./data/logs:/code/logs  # Maps host 'data/logs' directory to '/code/logs' in the container
       - ./media:/code/media
     ports:
       - "8000:8000"
