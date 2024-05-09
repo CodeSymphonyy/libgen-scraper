@@ -39,7 +39,6 @@ def run_scraper(search_query_id):
     csv_path = os.path.join(settings.MEDIA_ROOT, csv_filename)
     json_path = os.path.join(settings.MEDIA_ROOT, json_filename)
 
-    # Assume book_resource is configured for model serialization
     book_resource = BookResource()
     dataset = book_resource.export()
 
